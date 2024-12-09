@@ -52,99 +52,99 @@ erDiagram
     ATTIVITA ||--o{ UTENTE_ATTIVITA : include
     UTENTE_ATTIVITA ||--o{ PUNTO_FITNESS : guadagna
  ```sql
-CREATE TABLE INSTRUCTOR (
-    id INT PRIMARY KEY,
-    name VARCHAR(255),
-    email VARCHAR(255)
+CREATE TABLE ISTRUTTORE (
+  id INT PRIMARY KEY,
+  nome VARCHAR(255),
+  email VARCHAR(255)
 );
 
-CREATE TABLE COURSE (
-    id INT PRIMARY KEY,
-    name VARCHAR(255),
-    enrollment_code VARCHAR(255),
-    instructor_id INT,
-    FOREIGN KEY (instructor_id) REFERENCES INSTRUCTOR(id)
+CREATE TABLE CORSO (
+  id INT PRIMARY KEY,
+  nome VARCHAR(255),
+  codice_iscrizione VARCHAR(255),
+  istruttore_id INT,
+  FOREIGN KEY (istruttore_id) REFERENCES ISTRUTTORE(id)
 );
 
-CREATE TABLE ACTIVITY (
-    id INT PRIMARY KEY,
-    title VARCHAR(255),
-    short_description VARCHAR(160),
-    long_description TEXT,
-    sessions INT,
-    course_id INT,
-    FOREIGN KEY (course_id) REFERENCES COURSE(id)
+CREATE TABLE ATTIVITA (
+  id INT PRIMARY KEY,
+  titolo VARCHAR(255),
+  descrizione_breve VARCHAR(160),
+  descrizione_estesa TEXT,
+  sessioni INT,
+  corso_id INT,
+  FOREIGN KEY (corso_id) REFERENCES CORSO(id)
 );
 
-CREATE TABLE USER (
-    id INT PRIMARY KEY,
-    name VARCHAR(255),
-    email VARCHAR(255)
+CREATE TABLE UTENTE (
+  id INT PRIMARY KEY,
+  nome VARCHAR(255),
+  email VARCHAR(255)
 );
 
-CREATE TABLE IMAGE (
-    id INT PRIMARY KEY,
-    url VARCHAR(255),
-    activity_id INT,
-    FOREIGN KEY (activity_id) REFERENCES ACTIVITY(id)
+CREATE TABLE IMMAGINE (
+  id INT PRIMARY KEY,
+  url VARCHAR(255),
+  attivita_id INT,
+  FOREIGN KEY (attivita_id) REFERENCES ATTIVITA(id)
 );
 
-CREATE TABLE DISCIPLINE (
-    id INT PRIMARY KEY,
-    name VARCHAR(255)
+CREATE TABLE DISCIPLINA (
+  id INT PRIMARY KEY,
+  nome VARCHAR(255)
 );
 
-CREATE TABLE ENROLLMENT (
-    user_id INT,
-    course_id INT,
-    PRIMARY KEY (user_id, course_id),
-    FOREIGN KEY (user_id) REFERENCES USER(id),
-    FOREIGN KEY (course_id) REFERENCES COURSE(id)
+CREATE TABLE ISCRIZIONE (  -- Rinominata per chiarezza
+  user_id INT,
+  corso_id INT,
+  PRIMARY KEY (user_id, corso_id),
+  FOREIGN KEY (user_id) REFERENCES UTENTE(id),
+  FOREIGN KEY (corso_id) REFERENCES CORSO(id)
 );
 
-CREATE TABLE FITNESS_POINT (
-    id INT PRIMARY KEY,
-    points INT,
-    award_date DATE,
-    user_id INT,
-    activity_id INT,
-    FOREIGN KEY (user_id) REFERENCES USER(id),
-    FOREIGN KEY (activity_id) REFERENCES ACTIVITY(id)
+CREATE TABLE PUNTO_FITNESS (
+  id INT PRIMARY KEY,
+  punti INT,
+  data_assegnazione DATE,
+  user_id INT,
+  attivita_id INT,
+  FOREIGN KEY (user_id) REFERENCES UTENTE(id),
+  FOREIGN KEY (attivita_id) REFERENCES ATTIVITA(id)
 );
 ```
 
 #SQL
 
 ```sql
-INSERT INTO INSTRUCTOR (id, name, email) VALUES
+INSERT INTO ISTRUTTORE (id, nome, email) VALUES
 (1, 'John Smith', 'john.smith@example.com'),
 (2, 'Jane Doe', 'jane.doe@example.com');
 
-INSERT INTO COURSE (id, name, enrollment_code, instructor_id) VALUES
-(1, 'Yoga Basics', 'YOGA101', 1),
-(2, 'Advanced Soccer', 'SOCCER201', 2);
+INSERT INTO CORSO (id, nome, codice_iscrizione, istruttore_id) VALUES
+(1, 'Yoga Base', 'YOGA101', 1),
+(2, 'Calcio Avanzato', 'SOCCER201', 2);
 
-INSERT INTO ACTIVITY (id, title, short_description, long_description, sessions, course_id) VALUES
-(1, 'Morning Yoga', 'Basic yoga poses for beginners', 'Detailed description of yoga poses...', 10, 1),
-(2, 'Soccer Training', 'Soccer drills and techniques', 'Detailed soccer training plan...', 12, 2);
+INSERT INTO ATTIVITA (id, titolo, descrizione_breve, descrizione_estesa, sessioni, corso_id) VALUES
+(1, 'Yoga del mattino', 'Posizioni base dello yoga per principianti', 'Descrizione dettagliata delle posizioni yoga...', 10, 1),
+(2, 'Allenamento di calcio', 'Esercitazioni e tecniche di calcio', 'Programma dettagliato di allenamento di calcio...', 12, 2);
 
-INSERT INTO USER (id, name, email) VALUES
+INSERT INTO UTENTE (id, nome, email) VALUES
 (1, 'Alice Johnson', 'alice@example.com'),
 (2, 'Bob Wilson', 'bob@example.com');
 
-INSERT INTO IMAGE (id, url, activity_id) VALUES
+INSERT INTO IMMAGINE (id, url, attivita_id) VALUES
 (1, 'yoga1.jpg', 1),
 (2, 'soccer1.jpg', 2);
 
-INSERT INTO DISCIPLINE (id, name) VALUES
+INSERT INTO DISCIPLINA (id, nome) VALUES
 (1, 'Yoga'),
-(2, 'Soccer');
+(2, 'Calcio');
 
-INSERT INTO ENROLLMENT (user_id, course_id) VALUES
+INSERT INTO ISCRIZIONE (user_id, corso_id) VALUES  -- Utilizzato il nome rinominato
 (1, 1),
 (2, 2);
 
-INSERT INTO FITNESS_POINT (id, points, award_date, user_id, activity_id) VALUES
+INSERT INTO PUNTO_FITNESS (id, punti, data_assegnazione, user_id, attivita_id) VALUES
 (1, 10, '2023-01-10', 1, 1),
 (2, 15, '2023-01-15', 2, 2);
 ```

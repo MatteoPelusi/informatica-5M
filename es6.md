@@ -1,3 +1,4 @@
+```mermaid
 erDiagram
     ISTRUTTORE {
         int ID
@@ -50,4 +51,4 @@ erDiagram
     UTENTE ||--o{ UTENTE_ATTIVITA : partecipa
     ATTIVITA ||--o{ UTENTE_ATTIVITA : include
     UTENTE_ATTIVITA ||--o{ PUNTO_FITNESS : guadagna
- 
+ ```

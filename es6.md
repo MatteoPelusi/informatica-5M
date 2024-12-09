@@ -1,6 +1,5 @@
 ```mermaid
 erDiagram
-erDiagram
   ISTRUTTORE {
     int ID
     string Nome

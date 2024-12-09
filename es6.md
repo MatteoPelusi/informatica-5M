@@ -57,34 +57,34 @@ erDiagram
 
 ```sql
 INSERT INTO ISTRUTTORE (id, nome, email) VALUES
-(1, 'John Smith', 'john.smith@example.com'),
-(2, 'Jane Doe', 'jane.doe@example.com');
+(1, 'Marco Rossi', 'marco.rossi@palestrafit.it'),
+(2, 'Anna Bianchi', 'anna.bianchi@danzaenergia.com');
 
 INSERT INTO CORSO (id, nome, codice_iscrizione, istruttore_id) VALUES
-(1, 'Yoga Base', 'YOGA101', 1),
-(2, 'Calcio Avanzato', 'SOCCER201', 2);
+(1, 'Pilates per principianti', 'PILATES101', 1),
+(2, 'Hip Hop dance', 'HIPHOP202', 2);
 
 INSERT INTO ATTIVITA (id, titolo, descrizione_breve, descrizione_estesa, sessioni, corso_id) VALUES
-(1, 'Yoga del mattino', 'Posizioni base dello yoga per principianti', 'Descrizione dettagliata delle posizioni yoga...', 10, 1),
-(2, 'Allenamento di calcio', 'Esercitazioni e tecniche di calcio', 'Programma dettagliato di allenamento di calcio...', 12, 2);
+(1, 'Riscaldamento dinamico', 'Esercizi di mobilità e attivazione muscolare', 'Una serie di esercizi per preparare il corpo al Pilates', 10, 1),
+(2, 'Coreografia base', 'Impara i primi passi di una coreografia hip hop', 'Creazione di una sequenza di movimenti semplici e divertenti', 12, 2);
 
 INSERT INTO UTENTE (id, nome, email) VALUES
-(1, 'Alice Johnson', 'alice@example.com'),
-(2, 'Bob Wilson', 'bob@example.com');
+(1, 'Sofia Verdi', 'sofia.verdi@gmail.com'),
+(2, 'Luca Neri', 'luca.neri@outlook.it');
 
 INSERT INTO IMMAGINE (id, url, attivita_id) VALUES
-(1, 'yoga1.jpg', 1),
-(2, 'soccer1.jpg', 2);
+(1, 'pilates_riscaldamento.jpg', 1),
+(2, 'hiphop_coreografia.png', 2);
 
 INSERT INTO DISCIPLINA (id, nome) VALUES
-(1, 'Yoga'),
-(2, 'Calcio');
+(1, 'Pilates'),
+(2, 'Danza');
 
 INSERT INTO ISCRIZIONE (user_id, corso_id) VALUES  -- Utilizzato il nome rinominato
 (1, 1),
 (2, 2);
 
 INSERT INTO PUNTO_FITNESS (id, punti, data_assegnazione, user_id, attivita_id) VALUES
-(1, 10, '2023-01-10', 1, 1),
-(2, 15, '2023-01-15', 2, 2);
+(1, 8, '2023-02-10', 1, 1),
+(2, 12, '2023-02-15', 2, 2);
 ```
